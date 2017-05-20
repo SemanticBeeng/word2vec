@@ -593,7 +593,7 @@ void TrainModel() {
     for (a = 0; a < vocab_size; a++) {
       if (vocab[a].word != NULL) {
         fprintf(fo, "%s ", vocab[a].word);
-
+	printf("%d ", &vocab[a].point);
       }
       if (binary) for (b = 0; b < layer1_size; b++) fwrite(&syn0[a * layer1_size + b], sizeof(real), 1, fo);
       else for (b = 0; b < layer1_size; b++) fprintf(fo, "%lf ", syn0[a * layer1_size + b]);
