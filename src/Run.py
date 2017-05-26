@@ -1,6 +1,7 @@
 from VectorFinder import *
 import glob
 import os
+import cPickle
 
 list_of_files = glob.glob('../data/*.vec')          
 for file_name in list_of_files:
@@ -12,11 +13,6 @@ for file_name in list_of_files:
   	del array[0]
 	returnList = VectorFinder(array)
 	del array[:] 
-	file_vec = open(os.path.splitext(file_name)[0]+"_vectors.txt","w") 
-	file_vec.write(str(returnList))
+	cPickle.dump(returnList, open(os.path.splitext(file_name)[0]+"_vectors.p", 'wb')) 
 	del returnList[:]  
-	file_vec.close()
 	ins.close()
-	
-  
-
