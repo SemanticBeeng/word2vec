@@ -1,12 +1,22 @@
 from VectorFinder import *
+import glob
+import os
 
-file = open("../data/vectors.txt","w") 
-with open("../data/word.txt", "r") as ins:
-    array = []
-    for line in ins:
-        array.append(line.rstrip())
-del array[0]
+list_of_files = glob.glob('../data/*.vec')          
+for file_name in list_of_files:
+	print file_name
+	ins = open(file_name, "r")
+    	array = []
+    	for line in ins:
+        	array.append(line.rstrip())
+  	del array[0]
+	returnList = VectorFinder(array)
+	del array[:] 
+	file_vec = open(os.path.splitext(file_name)[0]+"_vectors.txt","w") 
+	file_vec.write(str(returnList))
+	del returnList[:]  
+	file_vec.close()
+	ins.close()
+	
+  
 
-returnList = VectorFinder(array)
-file.write(str(returnList))  
-file.close() 
